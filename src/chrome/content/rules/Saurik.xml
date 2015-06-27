@@ -3,6 +3,12 @@
 
 		- (www.)
 
+	Partially covered domains:
+
+		- cydia *
+
+	* Google authentication breaks due to issues outside of the site's control;
+	  package detail pages have cross-domain iframes that may be insecure
 
 	Fully covered subdomains:
 
@@ -14,7 +20,13 @@
 	<target host="*.saurik.com" />
 
 
-	<rule from="^http://c(ache|ydia)\.saurik\.com/"
-		to="https://c$1.saurik.com/" />
+	<rule from="^http://cache\.saurik\.com/"
+		to="https://$1.saurik.com/" />
+
+	<rule from="^http://cydia\.saurik\.com/(api/login|connect|info)"
+		to="https://cydia.saurik.com/$1" />
+
+
+	<exclusion pattern="^http://cydia\.saurik\.com/api/login/google" />
 
 </ruleset>
